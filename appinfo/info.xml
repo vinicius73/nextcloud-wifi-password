@@ -19,10 +19,10 @@ With this app you will can share your app passwords.
 	<dependencies>
 		<nextcloud min-version="22" max-version="25" />
 	</dependencies>
-	<!-- <navigations>
+	<navigations>
 		<navigation>
 			<name>Wifi Password</name>
 			<route>wifi_password.page.index</route>
 		</navigation>
-	</navigations> -->
+	</navigations>
 </info>
