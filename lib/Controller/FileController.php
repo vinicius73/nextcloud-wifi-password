@@ -42,10 +42,11 @@ class FileController extends Controller {
 	 * @NoAdminRequired
 	 */
 	public function show($id): JSONResponse {
-		return new JSONResponse(
-			$this->fileService->getBySsid($id),
-			Http::STATUS_OK
-		);
+		$file = $this->fileService->getBySsid($id);
+		if ($file) {
+			return new JSONResponse($file, Http::STATUS_OK);
+		}
+		return new JSONResponse([], Http::STATUS_NOT_FOUND);
 	}
 
 	/**
@@ -70,13 +71,11 @@ class FileController extends Controller {
 	 * @NoAdminRequired
 	 */
 	public function update(string $id, string $ssid, ?string $password = null): JSONResponse {
-		return new JSONResponse(
-			$this->fileService->update($id, [
-				'ssid' => $ssid,
-				'password' => $password,
-			]),
-			Http::STATUS_OK
-		);
+		$return = $this->fileService->update($id, [
+			'ssid' => $ssid,
+			'password' => $password,
+		]);
+		return new JSONResponse($return, Http::STATUS_OK);
 	}
 
 	/**
@@ -84,7 +83,8 @@ class FileController extends Controller {
 	 * @NoCSRFRequired
 	 * @NoAdminRequired
 	 */
-	public function destroy($fileId): void {
-		$this->fileService->delete($fileId);
+	public function destroy($id): JSONResponse {
+		$success = $this->fileService->delete($id);
+		return new JSONResponse([], $success ? Http::STATUS_OK : Http::STATUS_NOT_FOUND);
 	}
 }

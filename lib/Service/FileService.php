@@ -33,8 +33,12 @@ class FileService {
 	}
 
 	public function getBySsid($name): array {
-		$json = $this->getRootFolder()->get($name)->getContent();
-		return json_decode($json, true);
+		try {
+			$json = $this->getRootFolder()->get($name)->getContent();
+			return json_decode($json, true);
+		} catch (NotFoundException $e) {
+		}
+		return [];
 	}
 
 	/**
@@ -52,13 +56,21 @@ class FileService {
 	public function update(string $ssid, array $newData): array {
 		$file = $this->getRootFolder()->get($ssid);
 		if ($newData['ssid'] !== $ssid) {
-			$file->move($newData['ssid']);
+			$newName = dirname($file->getPath()) . DIRECTORY_SEPARATOR . $newData['ssid'];
+			$file->move($newName);
 		}
 		$file->putContent(json_encode($newData));
 		return $newData;
 	}
 
-	public function delete($ssid): void {
+	public function delete($ssid): bool {
+		try {
+			$file = $this->getRootFolder()->get($ssid);
+			$file->delete();
+			return true;
+		} catch (NotFoundException $e) {
+		}
+		return false;
 	}
 
 	/**

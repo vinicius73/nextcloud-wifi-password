@@ -21,5 +21,5 @@ Feature: Files
       | key      | value  |
       | ssid     | "ssid2" |
       | password | null   |
-    And user "user1" delete ssid "ssid" with (200)
+    And user "user1" delete ssid "ssid2" with (200)
     And user "user1" list ssid with (200)
