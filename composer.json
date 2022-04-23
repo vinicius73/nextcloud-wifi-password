@@ -20,7 +20,11 @@
 	"require-dev": {
 		"nextcloud/coding-standard": "^1.0",
 		"christophwurst/nextcloud": "dev-master",
-		"vimeo/psalm": "^4.22"
+		"vimeo/psalm": "^4.22",
+		"behat/behat": "^3.10",
+		"libresign/behat-builtin-extension": "^0.2.0",
+		"guzzlehttp/guzzle": "^7.4",
+		"phpunit/phpunit": "^9.5"
 	},
 	"autoload": {
 		"psr-4": {

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="4.22.0@fc2c6ab4d5fa5d644d8617089f012f3bb84b8703">
+  <file src="lib/Controller/PageController.php">
+    <MissingDependency occurrences="1">
+      <code>IRootFolder</code>
+    </MissingDependency>
+  </file>
+  <file src="lib/Service/FileService.php">
+    <MissingDependency occurrences="3">
+      <code>$this-&gt;rootFolder</code>
+      <code>IRootFolder</code>
+      <code>IRootFolder</code>
+    </MissingDependency>
+    <UndefinedInterfaceMethod occurrences="2">
+      <code>getContent</code>
+      <code>putContent</code>
+    </UndefinedInterfaceMethod>
+  </file>
+</files>
