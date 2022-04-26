@@ -6,15 +6,11 @@ namespace OCA\WifiPassword\Controller;
 
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\TemplateResponse;
-use OCP\Files\IRootFolder;
 use OCP\IRequest;
 use OCA\WifiPassword\AppInfo\Application;
-use OCP\IUserSession;
+use OCP\Util;
 
 class PageController extends Controller {
-	protected IRootFolder $rootFolder;
-	protected IUserSession $user;
-
 	public function __construct(string $appName,
 								IRequest $request) {
 		parent::__construct($appName, $request);
@@ -25,6 +21,7 @@ class PageController extends Controller {
 	 * @NoCSRFRequired
 	 */
 	public function index(): TemplateResponse {
+        Util::addScript(Application::APP_ID, "assets/page-main");
 		return new TemplateResponse(Application::APP_ID, "page-main");
 	}
 }

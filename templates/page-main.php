@@ -1,1 +1,1 @@
-<div id="content">Hello World!</div>
+<div id="wifi-pass-content"></div>

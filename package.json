@@ -1,0 +1,22 @@
+{
+  "name": "wifi_password",
+  "license": "AGPL-3.0-or-later",
+  "authors": [
+    "Vinicius Reis <luiz.vinicius73@gmail.com>",
+    "Vitor Mattos <vitor@php.rio>"
+  ],
+  "scripts": {
+    "dev": "vite build --mode=development --minify=false --watch",
+    "build": "vue-tsc --noEmit && vite build"
+  },
+  "dependencies": {
+    "vue": "^3.2.33"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^2.3.1",
+    "typescript": "^4.6.3",
+    "vite": "^2.9.6",
+    "vue-tsc": "^0.34.10"
+  },
+  "packageManager": "yarn@3.2.0"
+}

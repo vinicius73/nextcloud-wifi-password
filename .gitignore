@@ -1,4 +1,38 @@
-.idea
+.php-cs-fixer.cache
+
+# yarn
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
 /vendor/
-.php-cs-fixer.cache
+node_modules
+*.local
+
+# Generated files
+js/*
+
+# Editor directories and files
+.idea
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
