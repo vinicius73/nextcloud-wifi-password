@@ -2,7 +2,8 @@
 import { defineComponent, ref, onMounted, onUnmounted } from 'vue'
 
 export default defineComponent({
-  setup() {
+  name: 'ViewMain',
+  setup () {
     const msg = ref('hello')
 
     let interval: number
@@ -13,7 +14,7 @@ export default defineComponent({
       }, 2_000)
     })
 
-    onUnmounted(()=> clearInterval(interval))
+    onUnmounted(() => clearInterval(interval))
 
     return {
       msg
@@ -23,5 +24,5 @@ export default defineComponent({
 </script>
 
 <template>
-<h1>{{ msg }}</h1>
+  <h1>{{ msg }}</h1>
 </template>

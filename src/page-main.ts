@@ -1,7 +1,7 @@
-import { createApp } from "vue";
+import { createApp } from 'vue'
 
 import Main from './views/main.vue'
 
-const app = createApp(Main);
+const app = createApp(Main)
 
-app.mount("#wifi-pass-content");
+app.mount('#wifi-pass-content')
