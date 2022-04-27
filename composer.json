@@ -37,5 +37,8 @@
 		"psalm": "psalm",
 		"cs:check": "php-cs-fixer fix --dry-run --diff",
 		"cs:fix": "php-cs-fixer fix"
-	}
+	},
+  "require": {
+    "ext-json": "*"
+  }
 }
