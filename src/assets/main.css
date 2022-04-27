@@ -1,0 +1,130 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+/* variables */
+
+:root {
+  --base-vue-blue: 52, 73, 94;
+  --base-vue-green: 65, 184, 131;
+  --vue-blue: rgb(var(--base-vue-blue));
+  --vue-green: rgb(var(--base-vue-green));
+}
+
+@container wifi_layout {
+  /* form */
+  input[type="text"] {
+    @apply appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight;
+  }
+
+  input[type="text"]:focus {
+    @apply outline-none bg-white border-vue-blue;
+  }
+
+  select {
+    @apply block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight;
+  }
+
+  select:focus {
+    @apply outline-none bg-white border-vue-blue;
+  }
+
+  label {
+    @apply block uppercase tracking-wide text-xs font-bold mb-2 text-vue-green;
+  }
+
+  button {
+    @apply bg-vue-blue text-white font-bold py-2 px-4 rounded inline-flex items-center;
+  }
+
+  button.error {
+    @apply bg-red-800 text-white;
+  }
+
+  button:hover, button:active, button:focus {
+    @apply bg-vue-green outline-none;
+  }
+
+  button svg {
+    max-width: 24px;
+    max-height: 24px;
+  }
+
+  /* elements */
+
+  .version-text {
+    @apply text-center font-mono text-sm text-vue-blue;
+  }
+
+  .box {
+    @apply bg-white shadow-lg rounded px-8 pt-6 pb-8 mb-4;
+    box-shadow: rgba(var(--base-vue-blue), 0.1) 0px 10px 15px -3px, rgba(var(--base-vue-blue), 0.05) 0px 4px 6px -2px;
+  }
+
+  .container {
+    @apply mx-auto max-w-4xl;
+  }
+
+  .page-header {
+    @apply flex items-center justify-between flex-wrap bg-vue-green p-6 text-white;
+  }
+
+  .page-header h1 {
+    @apply text-xl ml-5;
+  }
+
+  .page-header .logo {
+    width: 48px;
+  }
+
+  .page-footer {
+    @apply font-mono text-vue-blue text-center text-sm;
+  }
+
+  .page-footer a {
+    @apply text-vue-green;
+  }
+
+  #app {
+    @apply min-h-screen flex flex-col;
+  }
+
+  #page-main {
+    @apply mt-2 grid grid-cols-2 gap-4 flex-grow;
+  }
+
+  #page-main .wifi-info {
+    @apply row-span-2;
+  }
+
+  hr {
+    @apply border-solid border-vue-blue border-2 mb-4 mt-4;
+  }
+
+  /* print */
+
+  @media print {
+    .page-header, .page-footer, .wifi-form, .hide-on-print {
+      display: none;
+    }
+    body {
+      @apply bg-white;
+    }
+    #page-main {
+      @apply grid-cols-1 max-w-screen-sm;
+    }
+    .box {
+      @apply shadow-none border-solid border-vue-blue border-2;
+    }
+  }
+
+  @media (max-width: 768px) {
+    #page-main {
+      @apply grid-cols-1;
+    }
+  }
+
+}
+
+#wifi-pass-content {
+  container: wifi_layout
+}

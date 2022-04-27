@@ -1,7 +1,10 @@
 import { createApp } from 'vue'
-
 import Main from './views/main.vue'
 
-const app = createApp(Main)
+import './assets/main.css'
 
-app.mount('#wifi-pass-content')
+(() => {
+  const app = createApp(Main)
+
+  app.mount('#wifi-pass-content')
+})()
