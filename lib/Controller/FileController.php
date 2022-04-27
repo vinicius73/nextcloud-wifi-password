@@ -14,7 +14,7 @@ use OCP\IRequest;
 
 class FileController extends Controller {
 	private FileService $fileService;
-	
+
 	public function __construct(IRequest $request,
 								FileService $service) {
 		parent::__construct(Application::APP_ID, $request);
@@ -22,10 +22,6 @@ class FileController extends Controller {
 	}
 
 	/**
-	 * @CORS
-	 *
-	 * @NoCSRFRequired
-	 *
 	 * @NoAdminRequired
 	 */
 	public function index(): DataResponse {
@@ -35,10 +31,6 @@ class FileController extends Controller {
 	}
 
 	/**
-	 * @CORS
-	 *
-	 * @NoCSRFRequired
-	 *
 	 * @NoAdminRequired
 	 */
 	public function show($id): JSONResponse {
@@ -50,10 +42,6 @@ class FileController extends Controller {
 	}
 
 	/**
-	 * @CORS
-	 *
-	 * @NoCSRFRequired
-	 *
 	 * @NoAdminRequired
 	 */
 	public function create(string $ssid, ?string $password = null): JSONResponse {
@@ -64,10 +52,6 @@ class FileController extends Controller {
 	}
 
 	/**
-	 * @CORS
-	 *
-	 * @NoCSRFRequired
-	 *
 	 * @NoAdminRequired
 	 */
 	public function update(string $id, string $ssid, ?string $password = null): JSONResponse {
@@ -79,8 +63,6 @@ class FileController extends Controller {
 	}
 
 	/**
-	 * @CORS
-	 * @NoCSRFRequired
 	 * @NoAdminRequired
 	 */
 	public function destroy($id): JSONResponse {
