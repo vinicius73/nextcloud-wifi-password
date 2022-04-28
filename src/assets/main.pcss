@@ -9,23 +9,25 @@
   --vue-blue: rgb(var(--base-vue-blue));
   --vue-green: rgb(var(--base-vue-green));
 }
-
-@container wifi_layout {
+#wifi-pass-content {
   /* form */
   input[type="text"] {
     @apply appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight;
+
+    &:focus {
+      @apply outline-none bg-white border-vue-blue;
+    }
   }
 
-  input[type="text"]:focus {
-    @apply outline-none bg-white border-vue-blue;
+  input, select {
+    height: auto;
   }
 
   select {
     @apply block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight;
-  }
-
-  select:focus {
-    @apply outline-none bg-white border-vue-blue;
+    &:focus {
+      @apply outline-none bg-white border-vue-blue;
+    }
   }
 
   label {
@@ -34,19 +36,17 @@
 
   button {
     @apply bg-vue-blue text-white font-bold py-2 px-4 rounded inline-flex items-center;
-  }
+    &.error {
+      @apply bg-red-800 text-white;
+    }
+    &:hover, &:active, &:focus {
+      @apply bg-vue-green outline-none;
+    }
 
-  button.error {
-    @apply bg-red-800 text-white;
-  }
-
-  button:hover, button:active, button:focus {
-    @apply bg-vue-green outline-none;
-  }
-
-  button svg {
-    max-width: 24px;
-    max-height: 24px;
+    svg {
+      max-width: 24px;
+      max-height: 24px;
+    }
   }
 
   /* elements */
@@ -66,26 +66,23 @@
 
   .page-header {
     @apply flex items-center justify-between flex-wrap bg-vue-green p-6 text-white;
-  }
-
-  .page-header h1 {
-    @apply text-xl ml-5;
-  }
-
-  .page-header .logo {
-    width: 48px;
+    h1 {
+      @apply text-xl ml-5;
+    }
+    .logo {
+      width: 48px;
+    }
   }
 
   .page-footer {
     @apply font-mono text-vue-blue text-center text-sm;
-  }
-
-  .page-footer a {
-    @apply text-vue-green;
+    a {
+      @apply text-vue-green;
+    }
   }
 
   #app {
-    @apply min-h-screen flex flex-col;
+
   }
 
   #page-main {
@@ -122,9 +119,4 @@
       @apply grid-cols-1;
     }
   }
-
-}
-
-#wifi-pass-content {
-  container: wifi_layout
 }
