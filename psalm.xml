@@ -16,6 +16,7 @@
 	<issueHandlers>
 		<UndefinedClass>
 			<errorLevel type="suppress">
+				<referencedClass name="OC\*" />
 				<referencedClass name="OC" />
 			</errorLevel>
 		</UndefinedClass>
