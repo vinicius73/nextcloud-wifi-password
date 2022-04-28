@@ -3,7 +3,7 @@ Feature: Files
     Given user "user1" exists
 
   Scenario: send file
-    When user "user1" send ssid with (200)
+    When user "user2" send ssid with (200)
       | ssid | ssid |
       | type | wpa  |
     And user "user1" get ssid "ssid" with (200)
