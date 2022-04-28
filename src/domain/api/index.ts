@@ -1,18 +1,49 @@
+import { isEmpty } from 'lodash-es'
 import { client } from './client'
-
-export type SSIDRecord = {
-  ssid: string
-}
+import { QRCodeData } from '../../lib/qr-code'
+import { SSIDRecord, SSIDData } from '../wifi'
 
 const loadList = () => client.get('/files')
   .then(res => res.data as SSIDRecord[])
 
-const loadWifiData = (ssid: string) =>
-  client.get(`/files/${ssid}`).then((res) => res.data as SSIDRecord)
-
-const create = (ssid: string, password: string) =>
+const loadWifiData = (ssid: string): Promise<SSIDData> =>
   client
-    .post('/files', { password, ssid })
-    .then((res) => res.data as SSIDRecord)
+    .get(`/files/${ssid}`)
+    .then<QRCodeData>((res) => res.data)
+    .then((data) => {
+      return { ...data, _key: data.ssid }
+    })
 
-export { loadList, create, loadWifiData }
+const create = async ({ password, ssid, type }: SSIDData) => {
+  const data: QRCodeData = {
+    password,
+    ssid,
+    type
+  }
+  const res = await client
+    .post('/files', data)
+
+  return res.data as SSIDData
+}
+
+const update = async ({ password, ssid, type, _key }: SSIDData) => {
+  const data: QRCodeData = {
+    password,
+    ssid,
+    type
+  }
+
+  const res = await client.put(`/files/${_key}`, data)
+
+  return res.data as SSIDData
+}
+
+const save = (record: SSIDData) => {
+  if (isEmpty(record._key)) {
+    return create(record)
+  }
+
+  return update(record)
+}
+
+export { loadList, create, loadWifiData, save, update }
