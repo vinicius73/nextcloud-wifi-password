@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1454eb2990c3d75020cbdca5e79fe8d3",
+    "content-hash": "caf6a6da91e2538e43d0e42dc7f61239",
     "packages": [],
     "packages-dev": [
         {
@@ -1477,16 +1477,16 @@
         },
         {
             "name": "libresign/behat-builtin-extension",
-            "version": "v0.2",
+            "version": "v0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/LibreSign/behat-builtin-extension.git",
-                "reference": "c65d974fe9526abd24fd4b337a20c044e8f2f0f6"
+                "reference": "fb695f47248b78d3c1952d1156f4c414fad18eea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LibreSign/behat-builtin-extension/zipball/c65d974fe9526abd24fd4b337a20c044e8f2f0f6",
-                "reference": "c65d974fe9526abd24fd4b337a20c044e8f2f0f6",
+                "url": "https://api.github.com/repos/LibreSign/behat-builtin-extension/zipball/fb695f47248b78d3c1952d1156f4c414fad18eea",
+                "reference": "fb695f47248b78d3c1952d1156f4c414fad18eea",
                 "shasum": ""
             },
             "require-dev": {
@@ -1514,9 +1514,58 @@
             "description": "Behat extension to run php built-in web server",
             "support": {
                 "issues": "https://github.com/LibreSign/behat-builtin-extension/issues",
-                "source": "https://github.com/LibreSign/behat-builtin-extension/tree/v0.2"
+                "source": "https://github.com/LibreSign/behat-builtin-extension/tree/v0.3"
             },
-            "time": "2022-02-21T19:42:35+00:00"
+            "time": "2022-04-28T15:02:06+00:00"
+        },
+        {
+            "name": "libresign/nextcloud-behat",
+            "version": "v0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/LibreSign/nextcloud-behat.git",
+                "reference": "4bea9a45fa10689a8830dbd1e5877ac90fe9cfe4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/LibreSign/nextcloud-behat/zipball/4bea9a45fa10689a8830dbd1e5877ac90fe9cfe4",
+                "reference": "4bea9a45fa10689a8830dbd1e5877ac90fe9cfe4",
+                "shasum": ""
+            },
+            "require": {
+                "behat/behat": "^3.10",
+                "guzzlehttp/guzzle": "^7.4",
+                "libresign/behat-builtin-extension": "^0.3.0",
+                "php": ">=7.4",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Libresign\\NextcloudBehat\\": "features/bootstrap/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "AGPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Vitor Mattos",
+                    "email": "vitor@php.rio"
+                }
+            ],
+            "description": "Basic steps for a Nextcloud app",
+            "keywords": [
+                "Behat",
+                "nextcloud",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/LibreSign/nextcloud-behat/issues",
+                "source": "https://github.com/LibreSign/nextcloud-behat/tree/v0.2"
+            },
+            "time": "2022-04-28T19:07:33+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -6042,5 +6091,5 @@
     "platform-overrides": {
         "php": "7.4"
     },
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.1.0"
 }
