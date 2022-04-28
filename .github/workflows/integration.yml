@@ -95,5 +95,6 @@ jobs:
 
       - name: Run behat
         run: |
+          export BEHAT_ROOT_DIR=`pwd`
           cd apps/${{ env.APP_NAME }}
           vendor/bin/behat
