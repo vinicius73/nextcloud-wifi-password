@@ -94,5 +94,6 @@ jobs:
           ./occ app:enable ${{ env.APP_NAME }}
 
       - name: Run behat
-        working-directory: apps/${{ env.APP_NAME }}
-        run: vendor/bin/behat -f junit -f pretty
+        run: |
+          cd apps/${{ env.APP_NAME }}
+          vendor/bin/behat
