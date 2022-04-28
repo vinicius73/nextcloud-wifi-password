@@ -8,5 +8,3 @@ default:
   extensions:
     PhpBuiltin\Server:
       verbose: false
-      rootDir: /var/www/html
-      host: localhost

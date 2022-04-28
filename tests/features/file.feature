@@ -5,6 +5,7 @@ Feature: Files
   Scenario: send file
     When user "user1" send ssid with (200)
       | ssid | ssid |
+      | type | wpa  |
     And user "user1" get ssid "ssid" with (200)
     And the response should be a JSON array with the following mandatory values
       | key      | value  |
@@ -15,6 +16,7 @@ Feature: Files
       | ssid |
     And user "user1" edit ssid "ssid" with (200)
       | ssid | ssid2 |
+      | type | wpa-2 |
     And user "user1" get ssid "ssid" with (404)
     And user "user1" get ssid "ssid2" with (200)
     And the response should be a JSON array with the following mandatory values
