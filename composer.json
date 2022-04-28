@@ -24,9 +24,6 @@
 		"nextcloud/coding-standard": "^1.0",
 		"christophwurst/nextcloud": "dev-master",
 		"vimeo/psalm": "^4.22",
-		"behat/behat": "^3.10",
-		"guzzlehttp/guzzle": "^7.4",
-		"phpunit/phpunit": "^9.5",
 		"libresign/nextcloud-behat": "^0.2.0"
 	},
 	"autoload": {
