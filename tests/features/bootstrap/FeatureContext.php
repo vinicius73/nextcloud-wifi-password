@@ -2,13 +2,8 @@
 
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\TableNode;
-use GuzzleHttp\Client;
-use GuzzleHttp\Cookie\CookieJar;
-use GuzzleHttp\Exception\ClientException;
 use Libresign\NextcloudBehat\NextcloudContext;
-use PhpBuiltin\RunServerListener;
 use PHPUnit\Framework\Assert;
-use Psr\Http\Message\ResponseInterface;
 
 /**
  * Defines application features from the specific context.
