@@ -1,6 +1,6 @@
 <script lang="ts">
-import { readonly, watchEffect, defineComponent, computed } from 'vue'
-import { ConnectionType } from '../lib/qr-code'
+import { readonly, defineComponent, computed, reactive, watchEffect, ref } from 'vue'
+import { ConnectionType, QRCodeData } from '../lib/qr-code'
 import { useWifi } from '../state/wifi'
 import FormInput from './form/Input.vue'
 import FormSelect from './form/Select.vue'
@@ -10,30 +10,53 @@ export default defineComponent({
   components: { FormInput, FormSelect },
   setup () {
     const options = Object.values(ConnectionType)
-    const { state, setState } = useWifi()
+    const loading = ref(false)
+    const state = reactive<QRCodeData>({
+      password: '',
+      ssid: '',
+      type: ConnectionType.WEP
+    })
+
+    const { state: actual, saveState } = useWifi()
 
     const isNopass = computed(() => state.type === ConnectionType.nopass)
 
+    const setState = (data: Partial<QRCodeData>) => {
+      Object.assign(state, { ...data })
+    }
+
     const onChange = (ev: Event) => {
       const { name, value } = ev.target as HTMLInputElement
+      setState({ [name]: value })
+    }
 
-      setState({
-        [name]: value
-      })
+    const save = async () => {
+      loading.value = true
+      try {
+        await saveState({ ...state })
+      } catch (err) {
+        console.warn(err)
+      } finally {
+        loading.value = false
+      }
     }
 
     watchEffect(() => {
+      setState({ ...actual })
+    })
+
+    watchEffect(() => {
       if (isNopass.value) {
-        setState({
-          password: ''
-        })
+        setState({ password: '' })
       }
     })
 
     return {
       state: readonly(state),
+      loading: readonly(loading),
       isNopass,
       options,
+      save,
       onChange
     }
   }
@@ -43,7 +66,7 @@ export default defineComponent({
 <template>
   <form
     autocomplete="off"
-    class="box"
+    class="box wifi-edit-form"
     @submit.prevent
   >
     <FormInput
@@ -71,5 +94,16 @@ export default defineComponent({
       :options="options"
       @change="onChange"
     />
+
+    <hr>
+
+    <button
+      class="full"
+      type="button"
+      :disabled="loading"
+      @click="save"
+    >
+      Salvar
+    </button>
   </form>
 </template>

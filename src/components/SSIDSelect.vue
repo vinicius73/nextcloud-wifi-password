@@ -1,5 +1,5 @@
 <script lang="ts">
-import type { SSIDRecord } from '../domain/api'
+import type { SSIDRecord } from '../domain/wifi'
 import { isEmpty } from 'lodash-es'
 import { defineComponent, reactive, onMounted, watchPostEffect } from 'vue'
 import { loadList, loadWifiData } from '../domain/api'
@@ -14,6 +14,16 @@ export default defineComponent({
     })
 
     const { setState } = useWifi()
+
+    const setNew = () => {
+      state.ssid = ''
+
+      setState({
+        _key: '',
+        password: '',
+        ssid: ''
+      })
+    }
 
     const refresh = () => {
       loadList()
@@ -32,13 +42,12 @@ export default defineComponent({
       }
 
       loadWifiData(ssid)
-        .then(res => {
-          setState(res)
-        })
+        .then(res => setState(res))
     })
 
     return {
       state,
+      setNew,
       refresh
     }
   }
@@ -60,7 +69,7 @@ export default defineComponent({
           {{ row.ssid }}
         </option>
       </select>
-      <button>
+      <button @click="setNew">
         Novo
       </button>
     </div>
