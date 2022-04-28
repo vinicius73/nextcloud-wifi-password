@@ -15,7 +15,7 @@ jobs:
       matrix:
         php-versions: ['7.4', '8.0']
 
-    name: Nextcloud ${{ matrix.ocp-version }}
+    name: php${{ matrix.php-versions }}
     steps:
       - name: Checkout
         uses: actions/checkout@master
@@ -25,6 +25,9 @@ jobs:
         with:
           php-version: ${{ matrix.php-versions }}
           coverage: none
+
+      - name: Install dependencies
+        run: composer i
 
       - name: Run coding standards check
         run: composer run psalm
