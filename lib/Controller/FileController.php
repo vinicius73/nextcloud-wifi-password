@@ -22,6 +22,7 @@ class FileController extends Controller {
 	}
 
 	/**
+	 * @NoCSRFRequired
 	 * @NoAdminRequired
 	 */
 	public function index(): DataResponse {
@@ -31,6 +32,7 @@ class FileController extends Controller {
 	}
 
 	/**
+	 * @NoCSRFRequired
 	 * @NoAdminRequired
 	 */
 	public function show($id): JSONResponse {
@@ -42,6 +44,7 @@ class FileController extends Controller {
 	}
 
 	/**
+	 * @NoCSRFRequired
 	 * @NoAdminRequired
 	 */
 	public function create(string $ssid, ?string $password = null): JSONResponse {
@@ -52,6 +55,7 @@ class FileController extends Controller {
 	}
 
 	/**
+	 * @NoCSRFRequired
 	 * @NoAdminRequired
 	 */
 	public function update(string $id, string $ssid, ?string $password = null): JSONResponse {
@@ -63,6 +67,7 @@ class FileController extends Controller {
 	}
 
 	/**
+	 * @NoCSRFRequired
 	 * @NoAdminRequired
 	 */
 	public function destroy($id): JSONResponse {
