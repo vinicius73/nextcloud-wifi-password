@@ -72,7 +72,6 @@ jobs:
         working-directory: apps/${{ env.APP_NAME }}
         run: |
           composer install
-          composer --working-dir=tests/integration install
 
       - name: Set up Nextcloud
         run: |
@@ -95,7 +94,5 @@ jobs:
           ./occ app:enable ${{ env.APP_NAME }}
 
       - name: Run behat
-        working-directory: apps/${{ env.APP_NAME }}/tests/integration
-        env:
-          BEHAT_ROOT_DIR: ../../../../
+        working-directory: apps/${{ env.APP_NAME }}
         run: vendor/bin/behat -f junit -f pretty
