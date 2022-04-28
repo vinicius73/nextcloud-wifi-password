@@ -1,12 +1,13 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
+import SSIDSelect from '../components/SSIDSelect.vue'
 import WifiForm from '../components/WifiForm.vue'
 import WifiInfo from '../components/WifiInfo.vue'
 import QRCode from '../components/QRCode.vue'
 
 export default defineComponent({
   name: 'ViewMain',
-  components: { WifiForm, WifiInfo, QRCode },
+  components: { SSIDSelect, WifiInfo, QRCode, WifiForm },
   setup () {
     return {
 
@@ -20,7 +21,8 @@ export default defineComponent({
     id="page-main"
     class="container"
   >
-    <div class="wifi-form">
+    <SSIDSelect class="wifi-form">
+      <hr>
       <WifiForm />
       <!-- <div class="version-text">
         <a
@@ -28,7 +30,7 @@ export default defineComponent({
           target="_blank"
         >v{{ version }}</a>
       </div> -->
-    </div>
+    </SSIDSelect>
     <WifiInfo
       class="wifi-info"
     >
@@ -42,3 +44,12 @@ export default defineComponent({
     </WifiInfo>
   </main>
 </template>
+
+<style lang="pcss">
+#content.app-wifi_password {
+  width: 100%;
+  padding-left: 1em;
+  padding-right: 1em;
+  @apply min-h-screen flex flex-col;
+}
+</style>

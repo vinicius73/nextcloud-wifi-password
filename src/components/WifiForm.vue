@@ -1,63 +1,75 @@
 <script lang="ts">
-import type { SSIDRecord } from '../domain/api'
-import { isEmpty } from 'lodash-es'
-import { defineComponent, reactive, onMounted, watchPostEffect } from 'vue'
-import { loadList, loadWifiData } from '../domain/api'
+import { readonly, watchEffect, defineComponent, computed } from 'vue'
+import { ConnectionType } from '../lib/qr-code'
 import { useWifi } from '../state/wifi'
+import FormInput from './form/Input.vue'
+import FormSelect from './form/Select.vue'
 
 export default defineComponent({
-  name: 'WifiForm',
+  name: 'WifiInfo',
+  components: { FormInput, FormSelect },
   setup () {
-    const state = reactive({
-      ssid: '',
-      list: [] as SSIDRecord[]
-    })
+    const options = Object.values(ConnectionType)
+    const { state, setState } = useWifi()
 
-    const { setState } = useWifi()
+    const isNopass = computed(() => state.type === ConnectionType.nopass)
 
-    const refresh = () => {
-      loadList()
-        .then(res => {
-          state.list = res
-        })
+    const onChange = (ev: Event) => {
+      const { name, value } = ev.target as HTMLInputElement
+
+      setState({
+        [name]: value
+      })
     }
 
-    onMounted(refresh)
-
-    watchPostEffect(() => {
-      const { ssid } = state
-
-      if (isEmpty(ssid)) {
-        return
-      }
-
-      loadWifiData(ssid)
-        .then(res => {
-          setState(res)
+    watchEffect(() => {
+      if (isNopass.value) {
+        setState({
+          password: ''
         })
+      }
     })
 
     return {
-      state,
-      refresh
+      state: readonly(state),
+      isNopass,
+      options,
+      onChange
     }
   }
 })
 </script>
 
 <template>
-  <div id="wifi-form">
-    <select
-      v-model="state.ssid"
-      name="ssid-select"
-    >
-      <option
-        v-for="row in state.list"
-        :key="row.ssid"
-        :value="row.ssid"
-      >
-        {{ row.ssid }}
-      </option>
-    </select>
-  </div>
+  <form
+    autocomplete="off"
+    class="box"
+    @submit.prevent
+  >
+    <FormInput
+      :value="state.ssid"
+      class="mb-4"
+      name="ssid"
+      label="Network name"
+      placeholder="SSID"
+      @input="onChange"
+    />
+
+    <FormInput
+      v-if="!isNopass"
+      :value="state.password"
+      class="mb-4"
+      name="password"
+      label="Password"
+      placeholder="Password"
+      @input="onChange"
+    />
+
+    <FormSelect
+      name="type"
+      :value="state.type"
+      :options="options"
+      @change="onChange"
+    />
+  </form>
 </template>

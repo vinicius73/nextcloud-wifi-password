@@ -50,6 +50,12 @@ export default defineComponent({
 </template>
 
 <style scoped>
+dt, dd, dl {
+  display: block;
+  width: inherit;
+  padding: initial;
+  text-align: initial;
+}
 dl dt {
   font-weight: normal;
   font-style: italic;
