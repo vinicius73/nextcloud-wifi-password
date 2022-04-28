@@ -64,10 +64,11 @@ class FileService {
 	 * @param null|string $password
 	 * @throws NotPermittedException
 	 */
-	public function create(string $ssid, ?string $password): array {
+	public function create(string $ssid, string $type, ?string $password): array {
 		$content = [
 			'ssid' => $ssid,
 			'password' => $password,
+			'type' => $type
 		];
 		$this->getRootFolder()->newFile(self::buildFilename($ssid), json_encode($content));
 		return $content;

@@ -47,9 +47,9 @@ class FileController extends Controller {
 	 * @NoCSRFRequired
 	 * @NoAdminRequired
 	 */
-	public function create(string $ssid, ?string $password = null): JSONResponse {
+	public function create(string $ssid, string $type, ?string $password = null): JSONResponse {
 		return new JSONResponse(
-			$this->fileService->create($ssid, $password),
+			$this->fileService->create($ssid, $type, $password),
 			Http::STATUS_OK
 		);
 	}
@@ -58,8 +58,9 @@ class FileController extends Controller {
 	 * @NoCSRFRequired
 	 * @NoAdminRequired
 	 */
-	public function update(string $id, string $ssid, ?string $password = null): JSONResponse {
+	public function update(string $id, string $ssid, string $type, ?string $password = null): JSONResponse {
 		$return = $this->fileService->update($id, [
+			'type' => $type,
 			'ssid' => $ssid,
 			'password' => $password,
 		]);
