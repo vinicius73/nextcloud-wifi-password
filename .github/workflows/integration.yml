@@ -8,7 +8,7 @@ on:
       - stable*
 
 env:
-  APP_NAME: libresign
+  APP_NAME: wifi_password
 
 jobs:
   integration:
