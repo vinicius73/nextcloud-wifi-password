@@ -23,7 +23,7 @@
 	"require-dev": {
 		"nextcloud/coding-standard": "^1.0",
 		"christophwurst/nextcloud": "dev-master",
-		"vimeo/psalm": "^4.22",
+		"vimeo/psalm": "^5.5",
 		"libresign/nextcloud-behat": "^0.2.0"
 	},
 	"autoload": {
